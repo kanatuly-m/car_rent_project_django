@@ -1,0 +1,10 @@
+<h1>Welcome to Car Rental</h1>
+
+<h2>Available Cars</h2>
+<ul>
+    {% for car in cars %}
+    <li>{{ car.name }} - {{ car.price }} per day</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'profile' %}">Go to Profile</a>
