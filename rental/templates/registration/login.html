@@ -1,0 +1,14 @@
+<!-- templates/registration/login.html -->
+<h2>Вход в систему</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button>
+</form>
+
+{% if form.errors %}
+    <p>Ошибка: Неправильный логин или пароль.</p>
+{% endif %}
+
+<p>Еще не зарегистрированы? <a href="{% url 'register' %}">Зарегистрироваться</a></p>

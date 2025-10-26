@@ -13,17 +13,20 @@ def car_list(request):
 
 @login_required
 def rental_form(request):
+    # Получаем доступные для аренды автомобили
+    available_cars = Car.objects.filter(available=True)
+    
     if request.method == 'POST':
         form = RentalForm(request.POST)
         if form.is_valid():
-            rental = form.save(commit=False)  # Не сохраняем еще
-            rental.user = request.user  # Связываем аренду с текущим пользователем
-            rental.save()  # Сохраняем аренду
-            return redirect('user-profile')  # Перенаправляем на личный кабинет
+            rental = form.save(commit=False)
+            rental.user = request.user  # Привязываем аренду к текущему пользователю
+            rental.save()
+            return redirect('profile')  # Перенаправляем на профиль после оформления аренды
     else:
         form = RentalForm()
 
-    return render(request, 'cars/rental_form.html', {'form': form})
+    return render(request, 'cars/rental_form.html', {'form': form, 'available_cars': available_cars})
 
 
 def car_create(request):

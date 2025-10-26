@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-</head>
-<body>
-    <h1>Welcome, {{ user.username }}!</h1>
-    
-    <h2>Your Rentals:</h2>
-    <ul>
-        {% for rental in rentals %}
-            <li>{{ rental.car.make }} - {{ rental.car.model }} (Return Date: {{ rental.return_date }})</li>
-        {% empty %}
-            <li>You have no rentals yet.</li>
-        {% endfor %}
-    </ul>
+<!-- templates/users/profile.html -->
+<h2>Личный кабинет</h2>
 
-    <a href="{% url 'car-list' %}">Go to car list</a>
-</body>
-</html>
+<p>Добро пожаловать, {{ user.username }}!</p>
+
+<h3>Ваши аренды:</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Автомобиль</th>
+            <th>Дата аренды</th>
+            <th>Дата возврата</th>
+            <th>Цена аренды</th> <!-- Новый столбец -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for rental in rentals %}
+            <tr>
+                <td>{{ rental.car.make }} {{ rental.car.model }}</td>
+                <td>{{ rental.rental_date }}</td>
+                <td>{{ rental.return_date }}</td>
+                <td>{{ rental.car.price_per_day }} USD</td> <!-- Отображение цены -->
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">У вас нет аренды.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'car-list' %}">Перейти к списку автомобилей</a>

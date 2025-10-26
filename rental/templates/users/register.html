@@ -1,26 +1,22 @@
 <!-- templates/users/register.html -->
-{% extends 'base.html' %}
+<h2>Регистрация</h2>
 
-{% block content %}
-    <h2>User Registration</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required>
-        <br>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зарегистрироваться</button>
+</form>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
-        <br>
+{% if form.errors %}
+    <div class="errors">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
-        <br>
-
-        <label for="is_admin">Is Admin:</label>
-        <input type="checkbox" name="is_admin" id="is_admin">
-        <br>
-
-        <button type="submit">Register</button>
-    </form>
-{% endblock %}
+<p>Уже зарегистрированы? <a href="{% url 'login' %}">Войти</a></p>
