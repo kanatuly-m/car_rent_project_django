@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}!</h1>
+    
+    <h2>Your Rentals:</h2>
+    <ul>
+        {% for rental in rentals %}
+            <li>{{ rental.car.make }} - {{ rental.car.model }} (Return Date: {{ rental.return_date }})</li>
+        {% empty %}
+            <li>You have no rentals yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'car-list' %}">Go to car list</a>
+</body>
+</html>

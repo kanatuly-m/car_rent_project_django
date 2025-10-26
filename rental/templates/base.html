@@ -1,0 +1,24 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Car Rental</h1>
+        <nav>
+            <a href="{% url 'car-list' %}">Cars</a>
+            <a href="{% url 'rental-create' %}">Rentals</a>
+            <a href="{% url 'user-register' %}">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- templates/cars/car_create.html -->
+<h2>Добавить новый автомобиль</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="make">Марка:</label>
+    <input type="text" id="make" name="make" required><br><br>
+
+    <label for="model">Модель:</label>
+    <input type="text" id="model" name="model" required><br><br>
+
+    <label for="year">Год:</label>
+    <input type="number" id="year" name="year" required><br><br>
+
+    <label for="price_per_day">Цена за день:</label>
+    <input type="number" id="price_per_day" name="price_per_day" required><br><br>
+
+    <label for="available">Доступность:</label>
+    <input type="checkbox" id="available" name="available"><br><br>
+
+    <button type="submit">Добавить автомобиль</button>
+</form>

@@ -1,0 +1,24 @@
+<!-- templates/cars/rental_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Rent a Car</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="{{ form.car.id_for_label }}">Choose a car:</label>
+        {{ form.car }}
+        <select id="car" name="car_id">
+            {% for car in cars %}
+                <option value="{{ car.id }}">{{ car.make }} - {{ car.model }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="{{ form.return_date.id_for_label }}">Return Date:</label>
+        {{ form.return_date }}
+        <input type="date" id="return_date" name="return_date" required>
+        <br>
+
+        <button type="submit">Rent a Car</button>
+    </form>
+{% endblock %}
